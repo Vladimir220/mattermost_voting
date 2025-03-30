@@ -1,0 +1,8 @@
+services:
+  tarantool:
+    build:
+      dockerfile: ./tarantool.Dockerfile
+    ports:
+      - "3301:3301"
+    
+  
