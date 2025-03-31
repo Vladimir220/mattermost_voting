@@ -1,3 +1,10 @@
 2025/03/30 23:52:18 Handler.go:73: ERROR:strconv.ParseUint: parsing "a6e4i961gt83uqyobr7t5bzzxa": invalid syntax
 2025/03/31 04:05:49 Handler.go:123: ERROR:голосование уже завершено
 2025/03/31 04:09:05 Handler.go:157: ERROR:ошибка получения данных о голосовании: получен пустой список
+2025/03/31 04:41:37 init_system.go:56: ERROR:Проверьте переменные среды: TARANTOOL_USER, TARANTOOL_USER
+2025/03/31 04:43:58 init_system.go:56: ERROR:Проверьте переменные среды: TARANTOOL_USER, TARANTOOL_PASS
+2025/03/31 04:45:54 main.go:24: ERROR:Не удалось получить информацию о боте: Get "http://localhost:8065/api/v4/users/username/voting": dial tcp [::1]:8065: connect: connection refused
+2025/03/31 04:55:08 main.go:24: ERROR:Не удалось получить информацию о боте: parse ":8065/api/v4/users/username/voting": missing protocol scheme
+2025/03/31 04:55:34 main.go:24: ERROR:Не удалось получить информацию о боте: Get "http://:8065/api/v4/users/username/voting": dial tcp :8065: connect: connection refused
+2025/03/31 05:05:40 main.go:16: ERROR:ошибка подключания к Tarantool: failed to dial: dial tcp: address http://localhost:3301: too many colons in address
+2025/03/31 05:11:42 Handler.go:168: ERROR:ошибка получения данных о голосовании: получен пустой список

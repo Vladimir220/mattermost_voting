@@ -26,6 +26,9 @@ func InitSystem() (loginInfo Models.LoginInfo, errLog *log.Logger) {
 	loginInfo.Url = os.Getenv("MATTERMOST_URL")
 	loginInfo.BotToken = os.Getenv("BOT_TOKEN")
 	loginInfo.BotName = os.Getenv("BOT_NAME")
+	loginInfo.TarantoolLogin = os.Getenv("TARANTOOL_USER")
+	loginInfo.TarantoolPassword = os.Getenv("TARANTOOL_PASS")
+	loginInfo.TarantoolUrl = os.Getenv("TARANTOOL_URL")
 
 	isEmpty := false
 	emptyVars := make([]string, 0, 3)
@@ -33,13 +36,24 @@ func InitSystem() (loginInfo Models.LoginInfo, errLog *log.Logger) {
 		emptyVars = append(emptyVars, "MATTERMOST_URL")
 		isEmpty = true
 	}
-
 	if loginInfo.BotToken == "" {
 		emptyVars = append(emptyVars, "BOT_TOKEN")
 		isEmpty = true
 	}
 	if loginInfo.BotName == "" {
 		emptyVars = append(emptyVars, "BOT_NAME")
+		isEmpty = true
+	}
+	if loginInfo.TarantoolLogin == "" {
+		emptyVars = append(emptyVars, "TARANTOOL_USER")
+		isEmpty = true
+	}
+	if loginInfo.TarantoolPassword == "" {
+		emptyVars = append(emptyVars, "TARANTOOL_PASS")
+		isEmpty = true
+	}
+	if loginInfo.TarantoolUrl == "" {
+		emptyVars = append(emptyVars, "TARANTOOL_URL")
 		isEmpty = true
 	}
 

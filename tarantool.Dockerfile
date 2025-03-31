@@ -1,7 +1,6 @@
 FROM tarantool/tarantool
 
 COPY ./Db/Migrations/001_votings.lua /opt/tarantool/inittt.lua
-#COPY ./Db/Migrations /opt/tarantool/migrations
 
 WORKDIR /opt/tarantool
 

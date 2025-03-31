@@ -3,9 +3,12 @@ package Models
 import "github.com/mattermost/mattermost/server/public/model"
 
 type LoginInfo struct {
-	Url      string
-	BotToken string
-	BotName  string
+	Url               string
+	BotToken          string
+	BotName           string
+	TarantoolLogin    string
+	TarantoolPassword string
+	TarantoolUrl      string
 }
 
 type Client struct {

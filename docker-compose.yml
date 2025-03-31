@@ -4,5 +4,13 @@ services:
       dockerfile: ./tarantool.Dockerfile
     ports:
       - "3301:3301"
-    
-  
+  bot:
+    build:
+      dockerfile: ./bot.Dockerfile
+    network_mode: "host"
+   # ports:
+    #  - "1234:1234"
+    volumes:
+      - .\:/app/
+    depends_on:
+      - tarantool
