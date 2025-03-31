@@ -1,1 +1,3 @@
 2025/03/30 23:52:18 Handler.go:73: ERROR:strconv.ParseUint: parsing "a6e4i961gt83uqyobr7t5bzzxa": invalid syntax
+2025/03/31 04:05:49 Handler.go:123: ERROR:голосование уже завершено
+2025/03/31 04:09:05 Handler.go:157: ERROR:ошибка получения данных о голосовании: получен пустой список

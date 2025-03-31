@@ -1,5 +1,5 @@
 local username =  os.getenv('TARANTOOL_USER') or 'user'
-local password = os.getenv('TARANTOOL_PASS') or 'password'
+local password = os.getenv('TARANTOOL_PASS') or 'qwerty'
 
 
 -- Проверяем, существует ли пользователь. Если нет, создаем его.
@@ -45,7 +45,7 @@ local votings = box.schema.create_space('votings', { if_not_exists = true })
 
 votings:format({
     { name = 'id', type = 'unsigned' },
-    { name = 'creator_id', type = 'unsigned' },
+    { name = 'creator_id', type = 'string' },
     { name = 'question', type = 'string' },
     { name = 'options_id', type = 'unsigned' },
     { name = 'is_active', type = 'boolean' }

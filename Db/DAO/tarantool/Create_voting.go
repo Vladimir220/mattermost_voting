@@ -8,7 +8,7 @@ import (
 	"github.com/tarantool/go-tarantool/v2"
 )
 
-func (t TarantoolDAO) CreateVoting(creatorID uint, question string, options []string) (votingID uint, resOptions []Models.Option, err error) {
+func (t TarantoolDAO) CreateVoting(creatorID string, question string, options []string) (votingID uint, resOptions []Models.Option, err error) {
 
 	// Получаем индекс вариантов ответа
 	optionsID, err := t.getNextOptionsId()

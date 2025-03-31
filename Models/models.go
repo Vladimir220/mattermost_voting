@@ -15,7 +15,7 @@ type Client struct {
 
 type Voting struct {
 	Id        uint   `msgpack:"id"`
-	CreatorId uint   `msgpack:"creator_id"`
+	CreatorId string `msgpack:"creator_id"`
 	Question  string `msgpack:"question"`
 	OptionsId uint   `msgpack:"options_id"`
 	IsActive  bool   `msgpack:"is_active"`
