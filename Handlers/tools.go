@@ -3,14 +3,13 @@ package Handlers
 import (
 	"context"
 	"fmt"
-	"log"
 	"strings"
 
 	"github.com/mattermost/mattermost/server/public/model"
 )
 
 func isMessageForBot(message, botUsername string) bool {
-	mention := fmt.Sprintf("@%s", botUsername)
+	mention := fmt.Sprintf("@%s ", botUsername)
 	return strings.Contains(message, mention)
 }
 
@@ -24,7 +23,36 @@ func sendMessage(client *model.Client4, message, channelId, rootId string) (err 
 
 	_, _, err = client.CreatePost(context.Background(), post)
 	if err != nil {
-		log.Printf("Не удалось отправить сообщение: %v", err)
+		err = fmt.Errorf("не удалось отправить сообщение: %v", err)
 	}
 	return
+}
+
+func checkInputParameters(handlerName string, minCountParams int, input []string, client *model.Client4, post *model.Post) (params []string, err error) {
+	if len(input) == 0 {
+		message := fmt.Sprintf("Кажется вы забыли про параметры команды %s. Для дополнительной информации используйте команду /help.", handlerName)
+		err = sendMessage(client, message, post.ChannelId, post.RootId)
+		if err != nil {
+			return
+		}
+		return
+	}
+
+	params = strings.Split(input[1], "+++")
+
+	if len(params) < minCountParams {
+		message := fmt.Sprintf("Вы ввели не все требуемые параметры для команды %s. Для дополнительной информации используйте команду /help.", handlerName)
+		err = sendMessage(client, message, post.ChannelId, post.RootId)
+		if err != nil {
+			return
+		}
+		return
+	}
+	return
+}
+
+func cleanParams(params *[]string) {
+	for i := range *params {
+		(*params)[i] = strings.TrimSpace((*params)[i])
+	}
 }
