@@ -28,7 +28,7 @@ func sendMessage(client *model.Client4, message, channelId, rootId string) (err 
 	return
 }
 
-func checkInputParameters(handlerName string, minCountParams int, input []string, client *model.Client4, post *model.Post) (params []string, err error) {
+func checkInputParameters(handlerName, sep string, minCountParams int, input []string, client *model.Client4, post *model.Post) (params []string, err error) {
 	if len(input) == 0 {
 		message := fmt.Sprintf("Кажется вы забыли про параметры команды %s. Для дополнительной информации используйте команду /help.", handlerName)
 		err = sendMessage(client, message, post.ChannelId, post.RootId)
@@ -38,7 +38,7 @@ func checkInputParameters(handlerName string, minCountParams int, input []string
 		return
 	}
 
-	params = strings.Split(input[1], "+++")
+	params = strings.Split(input[1], sep)
 
 	if len(params) < minCountParams {
 		message := fmt.Sprintf("Вы ввели не все требуемые параметры для команды %s. Для дополнительной информации используйте команду /help.", handlerName)

@@ -65,4 +65,13 @@ options:format({
 })
 options:create_index('options_id_idx', { parts = { 'options_id', 'option_id', }, if_not_exists = true })
 
+-- Спэйс для хранения проголосовавших пользователей
+local voted = box.schema.create_space('voted', { if_not_exists = true })
+
+voted:format({
+    { name = 'voting_id', type = 'unsigned' },
+    { name = 'voted_id', type = 'string' }
+    
+})
+voted:create_index('voted_id_idx', { parts = { 'voting_id', 'voted_id', }, if_not_exists = true })
 

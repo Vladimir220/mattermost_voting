@@ -9,7 +9,7 @@ import (
 )
 
 func stopHandler(input []string, client *model.Client4, post *model.Post, user *model.User, dao DAO.DAO) (err error) {
-	params, err := checkInputParameters("/stop", 1, input, client, post)
+	params, err := checkInputParameters("/stop", " ", 1, input, client, post)
 	if err != nil {
 		return
 	}
@@ -20,9 +20,14 @@ func stopHandler(input []string, client *model.Client4, post *model.Post, user *
 		return
 	}
 
-	err = dao.StopVoting(uint(votingID))
+	err = dao.StopVoting(uint(votingID), user.Id)
 	if err != nil {
-		message := fmt.Sprintf("@%s Внутреняя ошибка команды /stop.", user.Username)
+		var message string
+		if err.Error() == "403" {
+			message = fmt.Sprintf("@%s У вас нет прав останавливать это голосование!", user.Username)
+		} else {
+			message = fmt.Sprintf("@%s Внутреняя ошибка команды /stop.", user.Username)
+		}
 		err = sendMessage(client, message, post.ChannelId, post.RootId)
 		if err != nil {
 			return

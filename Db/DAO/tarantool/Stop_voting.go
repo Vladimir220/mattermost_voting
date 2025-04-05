@@ -1,15 +1,24 @@
 package tarantool
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/tarantool/go-tarantool/v2"
 )
 
-func (t TarantoolDAO) StopVoting(votingID uint) (err error) {
+func (t TarantoolDAO) StopVoting(votingID uint, initiatorId string) (err error) {
+	voting, err := t.readVoting(votingID)
+	if err != nil {
+		return
+	}
+	if voting.CreatorId != initiatorId {
+		err = errors.New("403")
+		return
+	}
+
 	_, err = t.conn.Do(
 		tarantool.NewUpdateRequest(votingsSpace).
-			Index("primary").
 			Key([]any{votingID}).
 			Operations(tarantool.NewOperations().Assign(4, false)),
 	).Get()

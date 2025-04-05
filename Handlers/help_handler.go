@@ -10,11 +10,11 @@ func helpHandler(client *model.Client4, post *model.Post, user *model.User) (err
 	message := fmt.Sprintf(
 		`@%s Доступные команды:
 /create <вопрос>+++<вариант1>+++<вариант2> ...
-/vote <Id голосования>+++<Id варианта>
+/vote <Id голосования> <Id варианта>
 /result <Id голосования>
 /stop <Id голосования>
 /delete <Id голосования>
-Важно: обратите внимание на разделитель "+++" между параметрами команд!
+Важно: обратите внимание на разделитель "+++" между параметрами команды создания голосования!
 `, user.Username)
 
 	err = sendMessage(client, message, post.ChannelId, post.RootId)

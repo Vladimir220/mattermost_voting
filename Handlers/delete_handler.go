@@ -9,7 +9,7 @@ import (
 )
 
 func deleteHandler(input []string, client *model.Client4, post *model.Post, user *model.User, dao DAO.DAO) (err error) {
-	params, err := checkInputParameters("/delete", 1, input, client, post)
+	params, err := checkInputParameters("/delete", " ", 1, input, client, post)
 	if err != nil {
 		return
 	}
@@ -20,9 +20,14 @@ func deleteHandler(input []string, client *model.Client4, post *model.Post, user
 		return
 	}
 
-	err = dao.DeleteVoting(uint(votingID))
+	err = dao.DeleteVoting(uint(votingID), user.Id)
+	var message string
 	if err != nil {
-		message := fmt.Sprintf("@%s Внутреняя ошибка команды /delete.", user.Username)
+		if err.Error() == "403" {
+			message = fmt.Sprintf("@%s У вас нет прав удалять это голосование!", user.Username)
+		} else {
+			message = fmt.Sprintf("@%s Внутреняя ошибка команды /delete.", user.Username)
+		}
 		err = sendMessage(client, message, post.ChannelId, post.RootId)
 		if err != nil {
 			return

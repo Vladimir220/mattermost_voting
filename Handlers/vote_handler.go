@@ -9,7 +9,7 @@ import (
 )
 
 func voteHandler(input []string, client *model.Client4, post *model.Post, user *model.User, dao DAO.DAO) (err error) {
-	params, err := checkInputParameters("/vote", 2, input, client, post)
+	params, err := checkInputParameters("/vote", " ", 2, input, client, post)
 	if err != nil {
 		return
 	}
@@ -24,9 +24,14 @@ func voteHandler(input []string, client *model.Client4, post *model.Post, user *
 		return
 	}
 
-	err = dao.Vote(uint(votingID), uint(optionID))
+	err = dao.Vote(uint(votingID), uint(optionID), user.Id)
 	if err != nil {
-		message := fmt.Sprintf("@%s Голосования с таким ID не существует, либо оно закрыто владельцем.", user.Username)
+		var message string
+		if err.Error() == "уже проголосовал" {
+			message = fmt.Sprintf("@%s Вы уже проголосовали.", user.Username)
+		} else {
+			message = fmt.Sprintf("@%s Голосования с таким ID не существует, либо оно закрыто владельцем.", user.Username)
+		}
 		err = sendMessage(client, message, post.ChannelId, post.RootId)
 		if err != nil {
 			return

@@ -10,7 +10,7 @@ import (
 )
 
 func resultsHandler(input []string, client *model.Client4, post *model.Post, user *model.User, dao DAO.DAO) (err error) {
-	params, err := checkInputParameters("/results", 1, input, client, post)
+	params, err := checkInputParameters("/results", " ", 1, input, client, post)
 	if err != nil {
 		return
 	}

@@ -7,8 +7,10 @@ import (
 const (
 	votingsSpace = "votings"
 	optionsSpace = "options"
+	votedSpace   = "voted"
 	optionsIndex = "options_id_idx"
 	votingsIndex = "primary"
+	votedIndex   = "voted_id_idx"
 
 	votingNextIndexFuncName  = "get_next_voting_id"
 	optionsNextIndexFuncName = "get_next_options_id"

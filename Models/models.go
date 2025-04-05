@@ -30,3 +30,8 @@ type Option struct {
 	Text     string `msgpack:"text"`
 	Count    int    `msgpack:"count"`
 }
+
+type Voted struct {
+	VotingId uint   `msgpack:"voting_id"`
+	Id       string `msgpack:"voted_id"`
+}

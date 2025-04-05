@@ -21,7 +21,7 @@ func (t TarantoolDAO) readVoting(votingID uint) (voting Models.Voting, err error
 		return
 	}
 	if len(inputVoting) == 0 {
-		err = errors.New("ошибка получения данных о голосовании: получен пустой список")
+		err = errors.New("empty")
 		return
 	}
 

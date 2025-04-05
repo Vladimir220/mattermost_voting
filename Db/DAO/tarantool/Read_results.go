@@ -14,7 +14,7 @@ func (t TarantoolDAO) ReadResults(votingID uint) (question string, resOptions []
 	question = voting.Question
 
 	// Читаем результаты голосования
-	resOptions, err = t.readOptions(voting.OptionsId)
+	resOptions, err = t.readAllOptions(voting.OptionsId)
 	if err != nil {
 		return
 	}
