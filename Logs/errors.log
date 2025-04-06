@@ -1,3 +1,0 @@
-2025/04/05 19:52:58 Handler.go:80: ERROR:strconv.Atoi: parsing "a6e4i961gt83uqyobr7t5bzzxa": invalid syntax
-2025/04/06 00:33:37 bot_listening.go:28: ERROR:Ошибка WebSocket: NewWebSocketClient: model.websocket_client.connect_fail.app_error, websocket: close 1006 (abnormal closure): unexpected EOF
-2025/04/06 00:33:37 bot_listening.go:32: ERROR:Не удалось переподключиться к WebSocket: NewWebSocketClient: model.websocket_client.connect_fail.app_error, dial tcp [::1]:8065: connect: connection refused
